@@ -2,23 +2,22 @@ import { useState, useCallback } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "../api";
 
-const useLogin = () => {
+const useRegister = () => {
+  const [registerMessage, setRegisterMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const login = useCallback(async (username, password) => {
+  const register = useCallback(async (email, username, password) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.post(
-        `${API_BASE_URL}/api/user/login`,
-        {
-          username,
-          password,
-        },
-        { withCredentials: true }
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/user/register`, {
+        email,
+        username,
+        password,
+      });
       if (response.data.success) {
+        setRegisterMessage(data.message);
         setLoading(false);
         setError(null);
         console.log(response);
@@ -30,7 +29,7 @@ const useLogin = () => {
     }
   }, []);
 
-  return { login, loading, error };
+  return { register, loading, error, registerMessage };
 };
 
-export default useLogin;
+export default useRegister;
