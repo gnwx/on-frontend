@@ -9,7 +9,6 @@ const AuthContextProvider = ({ children }) => {
     axios
       .get(`${API_BASE_URL}/api/user/auth`, { withCredentials: true })
       .then((res) => {
-        console.log(res);
         setUser(res.data.user);
       })
       .catch((err) => console.log(err));

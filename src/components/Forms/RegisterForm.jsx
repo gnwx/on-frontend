@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useRegister from "../hooks/useRegister";
+import useRegister from "../../hooks/useRegister";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");

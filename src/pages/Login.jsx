@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/Forms/LoginForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const Login = () => {
