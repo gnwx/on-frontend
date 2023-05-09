@@ -35,7 +35,7 @@ const Navbar = () => {
             <Link to="/create">
               <YellowButton>Create Story</YellowButton>
             </Link>
-            <YellowButton>{user}</YellowButton>
+            <YellowButton>{user}'s Stories</YellowButton>
           </>
         )}
       </Stack>
