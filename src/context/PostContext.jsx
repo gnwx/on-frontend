@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 const PostContext = createContext();
 
 const PostContextProvider = ({ children }) => {
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState({});
 
   let isFinished =
     post && post.intro && post.development && post.conclusion ? true : false;
@@ -19,7 +19,6 @@ const PostContextProvider = ({ children }) => {
   const handlePost = (p) => {
     localStorage.setItem("post", JSON.stringify(p));
     setPost(p);
-    console.log(post);
   };
 
   const getPostFromLocal = () => {

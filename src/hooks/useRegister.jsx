@@ -9,6 +9,7 @@ const useRegister = () => {
 
   const register = useCallback(async (email, username, password) => {
     try {
+      setRegisterMessage("");
       setLoading(true);
       setError(null);
       const response = await axios.post(`${API_BASE_URL}/api/user/register`, {
@@ -17,13 +18,13 @@ const useRegister = () => {
         password,
       });
       if (response.data.success) {
-        setRegisterMessage(data.message);
+        setRegisterMessage(response.data);
         setLoading(false);
         setError(null);
         console.log(response);
       }
     } catch (error) {
-      setError(error);
+      setError(error.response.data.errors);
     } finally {
       setLoading(false);
     }

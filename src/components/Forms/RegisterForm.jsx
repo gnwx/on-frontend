@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useRegister from "../../hooks/useRegister";
-
+import { Box, Input, Stack, Text } from "@chakra-ui/react";
+import YellowButton from "../YellowButton";
+import PurpleInput from "../PurpleInput";
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { register } = useRegister();
-
+  const { register, error, loading, registerMessage } = useRegister();
+  const navigate = useNavigate();
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -21,33 +24,59 @@ const RegisterForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     register(email, username, password);
+    if (registerMessage.success) {
+      setEmail("");
+      setUsername("");
+      setPassword("");
+      navigate("/login");
+    }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={email} onChange={handleEmail} />
-      </div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={handleUsername}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={handlePassword}
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <Box
+      sx={{
+        color: "white",
+        width: 310,
+        display: "flex",
+        justifyContent: "center",
+        paddingTop: 40,
+        margin: "auto",
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        <Stack
+          sx={{
+            display: "flex",
+            gap: 4,
+            alignItems: "center",
+          }}
+        >
+          <PurpleInput
+            placeholder="Email"
+            type="text"
+            value={email}
+            handleChange={handleEmail}
+          />
+          <PurpleInput
+            id="username"
+            placeholder="Username"
+            type="text"
+            value={username}
+            handleChange={handleUsername}
+          />
+          <PurpleInput
+            id="password"
+            placeholder="Password"
+            type="password"
+            value={password}
+            handleChange={handlePassword}
+          />
+          <YellowButton size="md" type="submit" disabled={loading}>
+            Register
+          </YellowButton>
+          {error && error.map((err, idx) => <Text key={idx}>{err.msg} </Text>)}
+        </Stack>
+      </form>
+    </Box>
   );
 };
 

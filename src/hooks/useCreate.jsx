@@ -9,6 +9,7 @@ const useCreate = () => {
 
   const create = useCallback(async (title, category, body) => {
     try {
+      setCreateMessage("");
       setLoading(true);
       setError(null);
       const response = await axios.post(
@@ -26,7 +27,7 @@ const useCreate = () => {
         setError(null);
       }
     } catch (error) {
-      setError(error);
+      setError(error.response.data.errors);
     } finally {
       setLoading(false);
     }
