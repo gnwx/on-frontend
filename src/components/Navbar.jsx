@@ -7,34 +7,30 @@ const Navbar = () => {
   const { user } = useAuthContext();
   const navbarStyles = {
     display: "flex",
-
     margin: "auto",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     height: 20,
   };
   return (
     <Box bg="nav" sx={navbarStyles}>
-      <Stack>
-        <Text>Logo</Text>
-      </Stack>
       <Stack direction="row">
         <Link to="/">
           <YellowButton>Home</YellowButton>
         </Link>
-        {!user ? (
-          <>
-            <Link to="/login">
-              <YellowButton>Login</YellowButton>
-            </Link>
-          </>
-        ) : (
+        {user ? (
           <>
             <Link to="/create">
               <YellowButton>Create Story</YellowButton>
             </Link>
             <Link to="/mystories">
               <YellowButton>{user}'s Stories</YellowButton>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/login">
+              <YellowButton>Login</YellowButton>
             </Link>
           </>
         )}

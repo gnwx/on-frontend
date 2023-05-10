@@ -10,7 +10,7 @@ const StoryDetails = () => {
       sx={{
         width: "100%",
         height: "100vh",
-        padding: 10,
+        paddingTop: 5,
       }}
     >
       <Story size="lg" />

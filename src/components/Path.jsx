@@ -45,6 +45,10 @@ const Path = () => {
         padding: "10px 15px",
         left: 20,
         marginTop: 10,
+
+        "@media screen and (max-width: 600px)": {
+          display: "none",
+        },
       }}
     >
       <Text>{title}</Text>

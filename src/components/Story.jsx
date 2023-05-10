@@ -96,7 +96,6 @@ const Story = ({ story, size }) => {
             <Text>{post.conclusion && post.conclusion.body}</Text>
           </Stack>
           <Stack
-            direction="row"
             sx={{
               justifyContent: "center",
               fontWeight: "bold",

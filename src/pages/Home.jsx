@@ -26,14 +26,18 @@ const Home = () => {
       bg="darkP"
       sx={{
         width: "100%",
-        height: "100%",
+        minHeight: "100vh",
+        height: "max-content",
         justifyContent: "center",
-        padding: 10,
+        paddingY: 10,
       }}
     >
       <Stack
         direction="row"
-        sx={{ justifyContent: "center", display: "flex", marginBottom: 10 }}
+        sx={{
+          justifyContent: "center",
+          marginBottom: 10,
+        }}
       >
         <YellowButton size="md" handleClick={fetchUnfinished}>
           Unfinished
@@ -44,9 +48,9 @@ const Home = () => {
       </Stack>
       <Container>
         {stories ? (
-          stories.map((story) => {
-            return <Story key={story._id} story={story} size="sm" />;
-          })
+          stories.map((story) => (
+            <Story key={story._id} story={story} size="sm" />
+          ))
         ) : (
           <Box>There is no story!</Box>
         )}

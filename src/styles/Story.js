@@ -1,7 +1,8 @@
 const containerStyles = {
   display: "flex",
   flexDirection: "column",
-
+  fontSize: { base: "10px", sm: "md", lg: "md", xl: "md" },
+  maxHeight: "max-content",
   borderWidth: "0px 4px 2px 0px",
   borderStyle: "solid",
   borderColor: "#858585",
@@ -12,7 +13,8 @@ const smallContainerStyles = {
   ...containerStyles,
 
   justifyContent: "space-between",
-  width: 500,
+  width: { base: "300px", sm: "500px", lg: "450px", xl: "440px" },
+
   height: 150,
   marginBottom: 5,
   padding: 4,
@@ -22,9 +24,9 @@ const mediumContainerStyles = {
   ...containerStyles,
 
   gap: 4,
-  width: 600,
+  width: { base: "350px", sm: "300px", lg: "600px", xl: "700px" },
+
   height: 500,
-  maxHeight: "max-content",
   marginBottom: 5,
   padding: 8,
   overflow: "auto",
@@ -44,8 +46,9 @@ const mediumContainerStyles = {
 const largeContainerStyles = {
   ...containerStyles,
   gap: 4,
-  width: 700,
-  height: 700,
+  width: { base: "330px", sm: "320px", lg: "450px", xl: "600px" },
+
+  height: { base: "550px", sm: "500px", lg: "600px", xl: "700px" },
   maxHeight: "max-content",
   marginBottom: 5,
   padding: 8,
@@ -54,7 +57,7 @@ const largeContainerStyles = {
 const titleStyles = {
   color: "white",
   fontWeight: "bold",
-  fontSize: "xl",
+  fontSize: { base: "md", sm: "md", lg: "xl", xl: "xl" },
   textAlign: "center",
 };
 const categoryStack = {
@@ -64,7 +67,7 @@ const categoryStack = {
   justifyContent: "space-between",
 };
 
-const categoryText = { color: "white", fontSize: "sm" };
+const categoryText = { color: "white", fontSize: "9px" };
 export {
   titleStyles,
   largeContainerStyles,

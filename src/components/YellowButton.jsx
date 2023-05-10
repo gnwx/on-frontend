@@ -17,11 +17,7 @@ const YellowButton = ({
         fontWeight: "normal",
         height: size === "md" ? 18 : size === "lg" ? 22 : 16,
         padding:
-          size === "md"
-            ? "16px 18px"
-            : size === "lg"
-            ? "18px 20px"
-            : "14px 16px",
+          size === "md" ? "16px 18px" : size === "lg" ? "18px 20px" : "14px",
         background: bgColor,
         borderWidth: "0px 3px 2px 0px",
         borderStyle: "solid",

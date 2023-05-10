@@ -6,7 +6,7 @@ const PurpleTextarea = ({ handleChange, value, placeholder }) => {
     <Textarea
       maxHeight={44}
       height={44}
-      width={1000}
+      width={{ base: "100%", lg: "500px", xl: "800px" }}
       bg="nav"
       sx={{
         color: "white",
