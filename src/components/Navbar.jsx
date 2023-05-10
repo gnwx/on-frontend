@@ -5,18 +5,16 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { Link } from "react-router-dom";
 const Navbar = () => {
   const { user } = useAuthContext();
-  return (
-    <Box
-      bg="nav"
-      sx={{
-        display: "flex",
+  const navbarStyles = {
+    display: "flex",
 
-        margin: "auto",
-        justifyContent: "space-between",
-        alignItems: "center",
-        height: 20,
-      }}
-    >
+    margin: "auto",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 20,
+  };
+  return (
+    <Box bg="nav" sx={navbarStyles}>
       <Stack>
         <Text>Logo</Text>
       </Stack>

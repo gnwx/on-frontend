@@ -27,9 +27,6 @@ const YellowButton = ({
         borderStyle: "solid",
         borderColor: "#000000",
         borderRadius: "5px",
-        "&:hover": {
-          background: "#F8C630",
-        },
       }}
       type={type}
       onClick={handleClick}

@@ -5,10 +5,13 @@ import YellowButton from "../YellowButton";
 import PurpleInput from "../PurpleInput";
 import PurpleTextarea from "../PurpleTextarea";
 const CreateForm = () => {
+  //form inputs
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [body, setBody] = useState("");
+
   const { create, error, createMessage, loading } = useCreate();
+
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -26,7 +29,6 @@ const CreateForm = () => {
     setCategory("");
     setBody("");
   };
-  console.log(error);
   return (
     <Box
       sx={{

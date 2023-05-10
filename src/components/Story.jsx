@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { usePostContext } from "../hooks/usePostContext";
-import { useDetermineSection } from "../hooks/useDetermineSection";
 import { Container, Stack, Text } from "@chakra-ui/react";
 import YellowButton from "./YellowButton";
+import { Link } from "react-router-dom";
+
+// contexts
+import { useAuthContext } from "../hooks/useAuthContext";
+import { usePostContext } from "../hooks/usePostContext";
+
+import { useDetermineSection } from "../hooks/useDetermineSection";
+
 import {
   titleStyles,
   largeContainerStyles,
   mediumContainerStyles,
   smallContainerStyles,
+  categoryStack,
+  categoryText,
 } from "../styles/Story";
 
 import {
@@ -57,17 +63,8 @@ const Story = ({ story, size }) => {
     >
       {size === "sm" ? (
         <>
-          <Stack
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text sx={{ color: "white", fontSize: "sm" }}>
-              {story.category}
-            </Text>
+          <Stack sx={categoryStack}>
+            <Text sx={categoryText}>{story.category}</Text>
             <Text sx={{ fontSize: "12" }}>{time}</Text>
           </Stack>
           <Stack>
@@ -86,15 +83,8 @@ const Story = ({ story, size }) => {
         </>
       ) : (
         <>
-          <Stack
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text sx={{ color: "white", fontSize: "sm" }}>{post.category}</Text>
+          <Stack sx={categoryStack}>
+            <Text sx={categoryText}>{post.category}</Text>
             <Text sx={{ fontSize: "12" }}>{time}</Text>
           </Stack>
           <Stack>

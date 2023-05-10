@@ -30,7 +30,7 @@ const getLink = (story, post, user, hrefLink) => {
     story?.conclusion?.author;
   const shouldRedirect = author === user;
 
-  if (shouldRedirect) {
+  if (shouldRedirect || !user) {
     return `/story/${post._id}`;
   } else if (user) {
     return hrefLink;

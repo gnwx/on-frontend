@@ -57,10 +57,19 @@ const titleStyles = {
   fontSize: "xl",
   textAlign: "center",
 };
+const categoryStack = {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "space-between",
+};
 
+const categoryText = { color: "white", fontSize: "sm" };
 export {
   titleStyles,
   largeContainerStyles,
   mediumContainerStyles,
   smallContainerStyles,
+  categoryStack,
+  categoryText,
 };
