@@ -21,6 +21,9 @@ const Path = () => {
       case "/create":
         setTitle("Create story");
         break;
+      case "/mystories":
+        setTitle("My Stories");
+        break;
       default:
         if (p.startsWith("/story")) {
           setTitle("Story Details");

@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Create from "./pages/Create";
 import Body from "./pages/Body";
 import StoryDetails from "./pages/StoryDetails";
+import MyStories from "./pages/MyStories";
 import Navbar from "./components/Navbar";
 import Path from "./components/Path";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -32,6 +33,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Create />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/mystories"
+          element={
+            <ProtectedRoute>
+              <MyStories />
             </ProtectedRoute>
           }
         />

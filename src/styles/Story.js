@@ -44,7 +44,7 @@ const mediumContainerStyles = {
 const largeContainerStyles = {
   ...containerStyles,
   gap: 4,
-  width: 600,
+  width: 700,
   height: 700,
   maxHeight: "max-content",
   marginBottom: 5,

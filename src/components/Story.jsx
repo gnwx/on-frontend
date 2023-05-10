@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { usePostContext } from "../hooks/usePostContext";
@@ -11,28 +11,39 @@ import {
   mediumContainerStyles,
   smallContainerStyles,
 } from "../styles/Story";
+
+import {
+  getLink,
+  butonLabel,
+  calculateRelativeTime,
+} from "../helpers/storyHelpers";
 const Story = ({ story, size }) => {
+  const [time, setTime] = useState("");
+
   const { user } = useAuthContext();
-  const { handlePost, post, getPostFromLocal } = usePostContext();
+  const { handlePost, post } = usePostContext();
   // check if there is a stored post if its not then just use story prop that comes from Home
   const { localIsFinished, localIsDev, localIsConclusion, hrefLink } =
     useDetermineSection(story ? story : post);
 
+  const cardLink = getLink(story, post, user, hrefLink);
+  const butonText = butonLabel(
+    user,
+    story,
+    localIsDev,
+    localIsConclusion,
+    localIsFinished
+  );
   const handleClick = () => {
     handlePost(story);
   };
 
-  const butonLabel = () => {
-    if (!user) {
-      return "Read";
-    } else if (localIsDev) {
-      return "Write development";
-    } else if (localIsConclusion) {
-      return "Write conclusion";
-    } else if (localIsFinished) {
-      return "Read";
-    }
-  };
+  useEffect(() => {
+    const formattedTime = calculateRelativeTime(
+      story ? story.createdAt : post.createdAt
+    );
+    setTime(formattedTime);
+  }, [time]);
   return (
     <Container
       bg={localIsFinished ? "finished" : "nav"}
@@ -46,10 +57,18 @@ const Story = ({ story, size }) => {
     >
       {size === "sm" ? (
         <>
-          <Stack>
+          <Stack
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Text sx={{ color: "white", fontSize: "sm" }}>
               {story.category}
             </Text>
+            <Text sx={{ fontSize: "12" }}>{time}</Text>
           </Stack>
           <Stack>
             <Link to={`/story/${story._id}`} onClick={handleClick}>
@@ -58,27 +77,41 @@ const Story = ({ story, size }) => {
           </Stack>
 
           <Stack sx={{ alignItems: "flex-end" }}>
-            <Link to={user ? hrefLink : `/story/${post._id}`}>
+            <Link to={cardLink}>
               <YellowButton size="sm" handleClick={handleClick}>
-                {butonLabel()}
+                {butonText}
               </YellowButton>
             </Link>
           </Stack>
         </>
       ) : (
         <>
-          <Stack>
+          <Stack
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
             <Text sx={{ color: "white", fontSize: "sm" }}>{post.category}</Text>
+            <Text sx={{ fontSize: "12" }}>{time}</Text>
           </Stack>
           <Stack>
             <Text sx={titleStyles}>{post.title}</Text>
           </Stack>
-          <Stack sx={{ textAlign: "justify", gap: 5 }}>
-            <Text sx={{ color: "white" }}>{post.intro && post.intro.body}</Text>
+          <Stack sx={{ textAlign: "justify", gap: 5, color: "white" }}>
+            <Text>{post.intro && post.intro.body}</Text>
             <Text>{post.development && post.development.body}</Text>
             <Text>{post.conclusion && post.conclusion.body}</Text>
           </Stack>
-          <Stack>
+          <Stack
+            direction="row"
+            sx={{
+              justifyContent: "center",
+              fontWeight: "bold",
+            }}
+          >
             <Text>intro:{post.intro && post.intro.author} </Text>
             <Text>
               {post.development && `development: ${post.development.author}`}
