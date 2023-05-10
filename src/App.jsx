@@ -23,7 +23,7 @@ function App() {
         <Route
           path="/add/:id"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute redirect="/login">
               <Body />
             </ProtectedRoute>
           }
@@ -31,7 +31,7 @@ function App() {
         <Route
           path="/create"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute redirect="/login">
               <Create />
             </ProtectedRoute>
           }
@@ -39,7 +39,7 @@ function App() {
         <Route
           path="/mystories"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute redirect="/login">
               <MyStories />
             </ProtectedRoute>
           }

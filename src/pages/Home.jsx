@@ -6,6 +6,8 @@ import { Box, Container, Stack } from "@chakra-ui/react";
 import YellowButton from "../components/YellowButton";
 const Home = () => {
   const [stories, setStories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     fetchUnfinished();
   }, []);
@@ -13,13 +15,16 @@ const Home = () => {
   const fetchUnfinished = () => {
     axios
       .get(`${API_BASE_URL}/api/stories/unfinished`)
-      .then((resp) => setStories(resp.data.unfinishedStories));
+      .then((resp) => setStories(resp.data.unfinishedStories))
+      .catch((err) => setError(err.response.data.error));
   };
   const fetchFinished = () => {
     axios
       .get(`${API_BASE_URL}/api/stories/finished`)
-      .then((resp) => setStories(resp.data.stories));
+      .then((resp) => setStories(resp.data.stories))
+      .catch((err) => setError(err.response.data.error));
   };
+  console.log(error);
 
   return (
     <Box
@@ -47,13 +52,10 @@ const Home = () => {
         </YellowButton>
       </Stack>
       <Container>
-        {stories ? (
+        {stories &&
           stories.map((story) => (
             <Story key={story._id} story={story} size="sm" />
-          ))
-        ) : (
-          <Box>There is no story!</Box>
-        )}
+          ))}
       </Container>
     </Box>
   );

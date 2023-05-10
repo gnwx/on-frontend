@@ -17,13 +17,14 @@ const MyStories = () => {
       bg="darkP"
       sx={{
         width: "100%",
-        height: "100%",
+        minHeight: "100vh",
+        height: "max-content",
         justifyContent: "center",
-        padding: 10,
+        paddingY: 10,
       }}
     >
-      {myStories.map((story) => (
-        <Story story={story} size="sm" />
+      {myStories.map((story, idx) => (
+        <Story key={idx} story={story} size="sm" />
       ))}
     </Box>
   );

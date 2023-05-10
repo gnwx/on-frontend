@@ -8,11 +8,11 @@ const Body = () => {
     <Box
       bg="darkP"
       sx={{
-        display: "flex",
-        flexDirection: "column",
         width: "100%",
-        height: "100%",
-        padding: "20px 10px",
+        minHeight: "100vh",
+        height: "max-content",
+        justifyContent: "center",
+        paddingY: 10,
       }}
     >
       <Story size="md" />

@@ -4,7 +4,7 @@ import { API_BASE_URL } from "../api";
 const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   useEffect(() => {
     axios
       .get(`${API_BASE_URL}/api/user/auth`, { withCredentials: true })

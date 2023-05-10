@@ -23,7 +23,6 @@ const useLogin = () => {
         setLoginMessage(response.data);
         setLoading(false);
         setError(null);
-        console.log(response);
       }
     } catch (error) {
       setError(error.response.data.errors);

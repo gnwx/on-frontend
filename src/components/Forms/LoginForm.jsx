@@ -1,16 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useLogin from "../../hooks/useLogin";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-  Spinner,
-  Box,
-  Stack,
-  Link,
-  Text,
-} from "@chakra-ui/react";
+import { Spinner, Box, Stack, Link, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import YellowButton from "../YellowButton";
 import PurpleInput from "../PurpleInput";
@@ -19,7 +9,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login, loading, error, loginMessage } = useLogin();
-  console.log(loginMessage);
   const handleUsername = (event) => {
     setUsername(event.target.value);
   };
@@ -31,14 +20,16 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login(username, password);
+  };
+  console.log(error);
+
+  useEffect(() => {
     if (loginMessage.success) {
       setUsername("");
       setPassword("");
       navigate("/");
     }
-  };
-  console.log(error);
-
+  }, [loginMessage]);
   return (
     <Box
       sx={{
